@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-boot-rest-services-all-examples-for-sprin
+ gboottutorial.com
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: p
+Implementation-Vendor-Id: com.in28minutes.springboot
+Build-Jdk: 1.8.0_211
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/spring-boot-rest-services-all-examples-for-springbo
+ ottutorial.com
+Created-By: Maven Integration for Eclipse
+
