@@ -6,6 +6,11 @@ public class RoomScheduleResultDTO {
 	private int roomId;
 	private Date startTime;
 	private Date endTime;
+	@Override
+	public String toString() {
+		return "RoomScheduleResultDTO [roomId=" + roomId + ", startTime="
+				+ startTime + ", endTime=" + endTime + "]";
+	}
 	public int getRoomId() {
 		return roomId;
 	}

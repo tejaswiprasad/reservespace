@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mrbs.dto.BookRoomDTO;
+import com.mrbs.dto.BookRoomResultDTO;
 import com.mrbs.dto.RoomScheduleDTO;
 import com.mrbs.dto.RoomScheduleResultDTO;
 import com.mrbs.dto.RoomSearchCriteriaDTO;
 import com.mrbs.dto.RoomSearchResultDTO;
+import com.mrbs.model.BookRoomInfo;
 import com.mrbs.model.Room;
 import com.mrbs.model.ScheduleInfo;
 import com.mrbs.service.RoomService;
@@ -66,7 +69,7 @@ public class RoomController {
 		return roomResultList;
 	}
 	
-	@PostMapping("/schedules")
+/*	@PostMapping("/schedules")
 	public List<RoomScheduleResultDTO> getRoomSchedules(@RequestBody RoomScheduleDTO dto) throws Exception {
 		
 	    SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -88,27 +91,40 @@ public class RoomController {
 		
 		return roomScheduledResultList;
 	}
+*/	
 	
-	public static void main(String[] args) throws Exception {
 		
-		ObjectMapper mapper = new ObjectMapper();
+	@PostMapping("/schedules")
+	public void saveSchedule(@RequestBody RoomScheduleDTO dto) throws Exception {
 		
-		RoomSearchCriteriaDTO criteriaDTO	=	new RoomSearchCriteriaDTO();
-		criteriaDTO.setBuilding("building");
-		criteriaDTO.setRegion("region");
-		criteriaDTO.setFloor("floor");
-		criteriaDTO.setCapacity("capacity");
+	    SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	    
+	    Date startDateTime	=	FORMATTER.parse(dto.getStartTime());
+	    Date endDateTime	=	FORMATTER.parse(dto.getEndTime());
 		
-		String jsonString = mapper.writeValueAsString(criteriaDTO);
-		
-		RoomScheduleDTO scheduleDTO	=	new RoomScheduleDTO();
-		scheduleDTO.setRoomId(1);
-		scheduleDTO.setStartTime("2019-05-26 13:00");
-		scheduleDTO.setEndTime("2019-05-26 14:00");
-		
-
-		System.out.println(mapper.writeValueAsString(scheduleDTO));
-	}
+	    roomService.saveScheduleInfo(dto.getRoomId(),startDateTime,endDateTime);
+		}
+	
+//	public static void main(String[] args) throws Exception {
+//		
+//		ObjectMapper mapper = new ObjectMapper();
+//		
+//		RoomSearchCriteriaDTO criteriaDTO	=	new RoomSearchCriteriaDTO();
+//		criteriaDTO.setBuilding("building");
+//		criteriaDTO.setRegion("region");
+//		criteriaDTO.setFloor("floor");
+//		criteriaDTO.setCapacity("capacity");
+//		
+//		String jsonString = mapper.writeValueAsString(criteriaDTO);
+//		
+//		RoomScheduleDTO scheduleDTO	=	new RoomScheduleDTO();
+//		scheduleDTO.setRoomId(1);
+//		scheduleDTO.setStartTime("2019-05-26 13:00");
+//		scheduleDTO.setEndTime("2019-05-26 14:00");
+//		
+//
+//		System.out.println(mapper.writeValueAsString(scheduleDTO));
+//	}
 
 	
 	/*@PostMapping("/students/{studentId}/courses")
